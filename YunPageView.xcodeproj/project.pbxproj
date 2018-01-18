@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		282E5F04200F61230008DA33 /* Img.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 282E5F03200F61230008DA33 /* Img.bundle */; };
+		282E5F092010749B0008DA33 /* YunObjectRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E5F082010749B0008DA33 /* YunObjectRecycler.m */; };
 		28B03D5A200E0E3C009B4075 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B03D59200E0E3C009B4075 /* AppDelegate.m */; };
 		28B03D5D200E0E3C009B4075 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B03D5C200E0E3C009B4075 /* ViewController.m */; };
 		28B03D62200E0E3C009B4075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28B03D61200E0E3C009B4075 /* Assets.xcassets */; };
@@ -19,6 +20,10 @@
 
 /* Begin PBXFileReference section */
 		282E5F03200F61230008DA33 /* Img.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Img.bundle; sourceTree = "<group>"; };
+		282E5F072010749B0008DA33 /* YunObjectRecycler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YunObjectRecycler.h; sourceTree = "<group>"; };
+		282E5F082010749B0008DA33 /* YunObjectRecycler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YunObjectRecycler.m; sourceTree = "<group>"; };
+		282E5F0A201076210008DA33 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
+		282E5F0B20107A900008DA33 /* YunPageViewPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YunPageViewPrefixHeader.pch; sourceTree = "<group>"; };
 		28B03D55200E0E3C009B4075 /* YunPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YunPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B03D58200E0E3C009B4075 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		28B03D59200E0E3C009B4075 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		28B03D57200E0E3C009B4075 /* YunPageView */ = {
 			isa = PBXGroup;
 			children = (
+				282E5F0B20107A900008DA33 /* YunPageViewPrefixHeader.pch */,
 				28B03D75200E3263009B4075 /* Controller */,
 				28B03D74200E3256009B4075 /* View */,
 				28B03D58200E0E3C009B4075 /* AppDelegate.h */,
@@ -103,6 +109,9 @@
 			children = (
 				28B03D6E200E0E73009B4075 /* YunPageView.h */,
 				28B03D6F200E0E73009B4075 /* YunPageView.m */,
+				282E5F072010749B0008DA33 /* YunObjectRecycler.h */,
+				282E5F082010749B0008DA33 /* YunObjectRecycler.m */,
+				282E5F0A201076210008DA33 /* CommonMacros.h */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -180,6 +189,7 @@
 				28B03D70200E0E73009B4075 /* YunPageView.m in Sources */,
 				28B03D5D200E0E3C009B4075 /* ViewController.m in Sources */,
 				28B03D73200E2B2B009B4075 /* TestPageViewController.m in Sources */,
+				282E5F092010749B0008DA33 /* YunObjectRecycler.m in Sources */,
 				28B03D68200E0E3C009B4075 /* main.m in Sources */,
 				28B03D5A200E0E3C009B4075 /* AppDelegate.m in Sources */,
 				28B03D7A200E3348009B4075 /* ArticleListPage.m in Sources */,
@@ -299,6 +309,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F36KV5ER57;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YunPageView/YunPageViewPrefixHeader.pch";
 				INFOPLIST_FILE = YunPageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhiyunyu.YunPageView;
@@ -313,6 +325,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F36KV5ER57;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YunPageView/YunPageViewPrefixHeader.pch";
 				INFOPLIST_FILE = YunPageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhiyunyu.YunPageView;

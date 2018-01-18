@@ -32,6 +32,8 @@
     [self.articleListItems addObject:@"沉吟至今"];
     [self.articleListItems addObject:@"呦呦鹿鸣"];
     [self.articleListItems addObject:@"食野之萍"];
+    [self.articleListItems addObject:@"幸甚至哉"];
+    [self.articleListItems addObject:@"歌以咏志"];
     
     [self.yunPageView reloadData];
 }
@@ -51,7 +53,7 @@
 }
 
 - (UIView *)pageView:(YunPageView *)pageView contentForPageAtIndex:(NSUInteger)index {
-    ArticleListPage *page = [pageView dequeueReusableContentViewWithIdentifier:NSStringFromClass([ArticleListPage class])];
+    ArticleListPage *page = (ArticleListPage *)[pageView dequeueReusableContentViewWithIdentifier:NSStringFromClass([ArticleListPage class])];
 
     [page layoutWithData:[self.articleListItems objectAtIndex:index]];
     
@@ -69,13 +71,14 @@
 #pragma mark - Accessor
 - (YunPageView *)yunPageView {
     if (!_yunPageView) {
-        _yunPageView = [[YunPageView alloc] initWithFrame: (CGRect){10, 100, [[UIScreen mainScreen] bounds].size.width - 20, [ArticleListPage size].height}];
+        _yunPageView = [[YunPageView alloc] initWithFrame: (CGRect){0, 100, [[UIScreen mainScreen] bounds].size.width, [ArticleListPage size].height}];
         _yunPageView.dataSource = self;
         _yunPageView.pageViewdelegate = self;
         _yunPageView.scrollEnabled = YES;
         _yunPageView.showsHorizontalScrollIndicator = NO;
         [_yunPageView registerClass:[ArticleListPage class] forContentViewReusedIdentifier:NSStringFromClass([ArticleListPage class])];
         _yunPageView.contentPageSize = [ArticleListPage size];
+        _yunPageView.preLoadNumber = 3;
     }
     return _yunPageView;
 }

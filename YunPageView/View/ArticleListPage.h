@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YunObjectRecycler.h"
 
-@interface ArticleListPage : UIView
+@interface ArticleListPage : UIView <YunReusableObject>
 
 + (CGSize)size;
++ (NSString *)identifier;
 
 - (void)layoutWithData:(NSString *)title;
 

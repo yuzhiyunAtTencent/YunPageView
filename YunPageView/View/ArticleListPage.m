@@ -21,6 +21,10 @@
     return CGSizeMake(100, 120);
 }
 
++ (NSString *)identifier {
+    return NSStringFromClass([self class]);
+}
+
 #pragma mark - Override
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -65,4 +69,10 @@
     }
     return _coverImage;
 }
+
+#pragma mark - YunReusableObject
+- (NSString *)reuseIdentifier {
+    return [[self class] identifier];
+}
+
 @end
