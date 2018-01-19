@@ -16,6 +16,7 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
 @property(nonatomic, strong) NSMutableDictionary *visiblePages;
 @property(nonatomic, assign) NSUInteger pageNumber;
 @property(nonatomic, strong) YunObjectRecycler *recycler;
+@property(nonatomic, strong) UITapGestureRecognizer *singleTapGesture;
 @end
 
 @implementation YunPageView
@@ -181,6 +182,44 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
     }
     CGFloat width = (self.contentPageSize.width + self.intervalOfPages) * self.pageNumber - self.intervalOfPages + self.contentViewInsets.left + self.contentViewInsets.right;
     self.contentSize = CGSizeMake(width, self.contentPageSize.height);
+}
+
+#pragma mark - Setter & Getter
+- (void)setPageViewdelegate:(id<YunPageViewDelegate>)pageViewdelegate {
+    if (pageViewdelegate) {
+        if ([pageViewdelegate respondsToSelector:@selector(pageView:didSelectedPage:atIndex:)]) {
+            [self removeGestureRecognizer:self.singleTapGesture];
+            [self addGestureRecognizer:self.singleTapGesture];
+        }
+    } else {
+        [self removeGestureRecognizer:self.singleTapGesture];
+    }
+    
+    _pageViewdelegate = pageViewdelegate;
+}
+
+#pragma mark -Touch  Event
+- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture {
+    
+    UIView *selectedView = nil;
+    for (UIView *subView in self.subviews) {
+        if (CGRectContainsPoint(subView.frame, [gesture locationInView:self])) {
+            selectedView = subView;
+            break;
+        }
+    }
+    if (selectedView) {
+        NSUInteger index = ([gesture locationInView:self].x - self.contentViewInsets.left) / (self.contentPageSize.width + self.intervalOfPages);
+        index = MIN(index, self.pageNumber -1);
+        [self.pageViewdelegate pageView:self didSelectedPage:selectedView atIndex:index];
+    }
+}
+
+- (UITapGestureRecognizer *)singleTapGesture {
+    if (!_singleTapGesture) {
+        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+    }
+    return _singleTapGesture;
 }
 
 @end

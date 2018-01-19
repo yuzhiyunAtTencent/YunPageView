@@ -64,8 +64,8 @@
 }
 
 #pragma mark - YunPageViewDelegate
-- (void)pageView:(YunPageView *)pageView didSelectPageAtIndex:(NSUInteger)index {
-    NSLog(@"selected index = %@", @(index));
+- (void)pageView:(YunPageView *)pageView didSelectedPage:(UIView *)page atIndex:(NSUInteger)index {
+    [self showAlertMessage:[self.articleListItems objectAtIndex:index]];
 }
 
 #pragma mark - Accessor
@@ -89,4 +89,12 @@
     }
     return _articleListItems;
 }
+
+- (void)showAlertMessage:(NSString *) myMessage{
+    UIAlertController *alertMessage;
+    alertMessage = [UIAlertController alertControllerWithTitle:@"提示" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
+    [alertMessage addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertMessage animated:YES completion:nil];
+}
+
 @end

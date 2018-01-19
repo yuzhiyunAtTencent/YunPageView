@@ -18,7 +18,7 @@
 
 @protocol YunPageViewDelegate<NSObject>
 @required
-- (void)pageView:(YunPageView *)pageView didSelectPageAtIndex:(NSUInteger)index;
+- (void)pageView:(YunPageView *)pageView didSelectedPage:(UIView *)page atIndex:(NSUInteger)index;
 @end
 
 //_______________________________________________________________________________________________________________
