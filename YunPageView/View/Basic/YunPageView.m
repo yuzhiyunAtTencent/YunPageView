@@ -155,15 +155,18 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
     NSUInteger index;
     for (int i = 0; i < pageRange.length; i++) {
         index = i + pageRange.location;
-        if ([self.dataSource respondsToSelector:@selector(pageView:contentForPageAtIndex:)]) {
-            UIView *view = [self.dataSource pageView:self contentForPageAtIndex:index];
-            // 添加每个page到scrollView中
-            [self addSubview:view];
-            
-            self.visiblePages[@(index)] = view;
-            
-            CGRect viewFrame = CGRectMake(self.contentViewInsets.left + index * (self.contentPageSize.width + self.intervalOfPages), floorf((self.bounds.size.height - self.contentPageSize.height) / 2) , self.contentPageSize.width, self.contentPageSize.height);
-            view.frame = viewFrame;
+        UIView *view = self.visiblePages[@(index)];
+        if (!view) {
+            if ([self.dataSource respondsToSelector:@selector(pageView:contentForPageAtIndex:)]) {
+                UIView *view = [self.dataSource pageView:self contentForPageAtIndex:index];
+                // 添加每个page到scrollView中
+                [self addSubview:view];
+                
+                self.visiblePages[@(index)] = view;
+                
+                CGRect viewFrame = CGRectMake(self.contentViewInsets.left + index * (self.contentPageSize.width + self.intervalOfPages), floorf((self.bounds.size.height - self.contentPageSize.height) / 2) , self.contentPageSize.width, self.contentPageSize.height);
+                view.frame = viewFrame;
+            }
         }
     }
 }
