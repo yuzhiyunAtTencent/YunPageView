@@ -36,6 +36,7 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+//    NSLog(@"layoutSubviews**********");
 
     [self p_layoutPages];
     [self p_caculateAndSetContentSize];
@@ -43,7 +44,7 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
 
 - (void)registerClass:(Class)pageViewClass forContentViewReusedIdentifier:(NSString *)identifier {
     if (!CHECK_VALID_STRING(identifier)) {
-        NSLog(@"Error!!!  RegisterClass invalid identifier");
+//        NSLog(@"Error!!!  RegisterClass invalid identifier");
         return;
     }
 
@@ -138,11 +139,12 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
 - (NSRange)p_rangeOfPageToLoad {
     NSUInteger preLoad = self.preLoadNumber;
     NSUInteger currentPageNO = [self currentPageNumber];
+    NSLog(@"currentPageNO %@", @(currentPageNO));
     
     NSInteger start = currentPageNO - preLoad;
     start = MAX(0, start);
-    
-    NSInteger end = currentPageNO + preLoad;
+    //  +1 是考虑第一个item部分被遮挡时，最右边的可见item却还不显示的情况
+    NSInteger end = currentPageNO + preLoad + 1;
     
     NSUInteger count = end - start + 1;
     count = MIN(self.pageNumber - start, count);
@@ -154,6 +156,7 @@ typedef NSMutableDictionary<NSString *, NSString *> QNPageViewRegisteredClassDic
  */
 - (void)p_addContentPageViewWithPageRange:(NSRange)pageRange {
     NSUInteger index;
+    NSLog(@"范围%@ ---- %@", @(pageRange.location), @(pageRange.length));
     for (int i = 0; i < pageRange.length; i++) {
         index = i + pageRange.location;
         UIView *view = self.visiblePages[@(index)];
